@@ -1,21 +1,46 @@
 // Find_number_peopple.cpp : Defines the entry point for the console application.
 /*
+Problem Statement
+---------------------------------------------------------------------------------------------------------------------------------
+You are the greatest builder who has recently acquired a construction project where in you are supposed to build house/houses on bare land . 
+Constraints:
+1.	You have to finish the project within given budget (total cost)
+2.	You should accommodate maximum number of homeless.
+While you have limited cost to complete the project, the land is limitless, hence you can create any number of houses.
+
+Each house type has cost and can accommodate fixed number of people, stored as a pair : 
+1.	An integer representing the cost of the house
+2.	An integer representing the number of people it can accommodate
+
+For example:
+# costs 7 Lakhs and can accommodate 160 people (7, 160)
+# costs 3 Lakhs and can accommodate 90 people (3, 90)
+
+Write a program that takes a list of house types and a cost limit, and returns the maximum number of homeless people the houses can accommodate.  
+For example: 
+                             Input:
+house_types  = [(7, 160), (3, 90), (2, 15)]
+cost_limit         = 20 (lakhs)
+
+Output:
+555 (6 of the 3 Lakhs type of house and 1 of the 2 Lakhs of house;     Total Number: 90*6 + 15*1 = 555;    Cost Limit: 3*6 + 2*1 = 20 Lakhs)
+-------------------------------------------------------------------------------------------------------------------------------
 Algorithm
--------------
-L =  limit
+-------------------------------------------------------------------------------------------------------------------------------
+L = Â limit
 N = number of people
-M[L] =  maximum number of people that can be fit in a building of cost L
+M[L] = Â maximum number of people that can be fit in a building of cost L
 
-M[L] =  max { M[L-Ci] +Ni, M[L-1]}   where Ci = cost limit of ith  type house,  Ni = number of pople in ith type house 
+M[L] = Â max { M[L-Ci] +Ni, M[L-1]} Â  where Ci = cost limit of ith Â type house, Â Ni = number of pople in ith type house 
 i will vary from 0 - size of input array
-
+---------------------------------------------------------------------------------------------------------------------------------
 Input
-------
+---------------------------------------------------------------------------------------------------------------------------------
 house_types   = [(7,50), (3, 25), (2, 15), (5, 35), (15, 100), (11,77), (13,111) ]
 cost_limit    = 10000
-
+---------------------------------------------------------------------------------------------------------------------------------
 Output
-------
+---------------------------------------------------------------------------------------------------------------------------------
 85384
 
 */
