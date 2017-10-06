@@ -1,0 +1,65 @@
+/*input.txt file contains more than 5000 names, sort them in alphabetical order. 
+Then working out the alphabetical value for each name, multiply this value by its alphabetical position in the list to obtain a name 
+score.
+
+For example, when the list is sorted into alphabetical order, COLIN, which is worth 3(C) + 15(O) + 12(L) + 9(I) + 14(N) = 53, 
+is the 938th name in the list. So, COLIN would obtain a score of 938 * 53 = 49714.
+
+What is the total of all the name scores in the file?
+*/
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#include <string>
+#include <algorithm>
+#include <vector>
+#include <array>
+
+std::string str ="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+using namespace std;
+int calculate_score(string name) {
+	int string_value = 0;
+	for(unsigned int i = 0; i<name.length(); i++) {
+		int char_value= str.find(name[i])+1;
+		string_value +=char_value;
+	}
+	return string_value;
+}
+
+int main()
+{
+	/*const char* array[] = {"CAT","DOG","RAT"};
+	vector<string> names_list(begin(array), end(array));*/
+
+	/*vector<string> names_list;
+	names_list.push_back("CAT");
+	names_list.push_back("DOG");
+	names_list.push_back("RAT");*/
+
+	ifstream in("input.txt");
+
+	if(!in) {
+		cout << "Cannot open input file.\n";
+		return 1;
+	}
+	string name;
+	vector<string> names_list;
+
+	string line;
+	getline(in, line);
+	stringstream ss(line);
+	while (getline(ss,name, ',')) {
+		names_list.push_back(name);
+	}
+	
+	sort(names_list.begin(),names_list.end());
+	unsigned long long total_score = 0;
+	int position=1;
+	for(vector<string>::iterator it = names_list.begin() ; it != names_list.end(); ++it) {
+		int local_score = calculate_score(*it);
+		total_score += local_score*position++;
+	}
+	cout <<total_score<<endl;
+	in.close();
+}
